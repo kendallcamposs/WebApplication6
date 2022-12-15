@@ -1,0 +1,38 @@
+﻿@model IEnumerable<WebApplication6.Models.Articulo>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="surface-ground p-3">
+    <div class="grid">
+        @foreach (var item in Model)
+        {
+            <div class="col-12 md:col-6 lg:col-4">
+                <div class="p-2">
+                    <div class="shadow-2 p-4 surface-card border-round">
+                        <div class="relative mb-3">
+                            <span class="surface-card text-900 shadow-2 px-3 py-2 absolute" style="border-radius: 1.5rem; left: 1rem; top:1rem;">Ropa</span>
+                            <img src=@Html.DisplayFor(modelItem => item.Imagen) class="w-full" />
+                        </div>
+                        <div class="flex justify-content-between align-items-center mb-3">
+                            <span class="text-900 font-medium text-xl">@Html.DisplayFor(modelItem => item.Nombre)</span>
+                        </div>
+                        <p class="mt-0 mb-3 text-600 line-height-3">
+                            @Html.DisplayFor(modelItem => item.Descripcion)
+                        </p>
+                        <span class="text-primary text-xl font-medium">CR @Html.DisplayFor(modelItem => item.Precio)</span>
+                        <a id="agregar-submit"
+                       type="submit"
+                       class="w-100 btn btn-lg btn-primary mt-2"
+                       asp-controller="Articuloes"
+                       asp-action="Add"
+                       asp-route-id="@item.Id">
+                            Agregar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

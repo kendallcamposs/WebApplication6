@@ -1,0 +1,81 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
+}
+
+<div class="card mb-3 col-11 md:col-6 m-auto">
+    <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="card-body">
+            <div class="mb-5">
+                <div class="text-center">
+                    <img src="https://www.primefaces.org/primeblocks-jsf/javax.faces.resource/images/blocks/logos/hyper.svg.xhtml?ln=primeblocks-app" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="text-center text-900 text-3xl font-medium mb-3">Registrarse</div>
+                <span class="text-600 font-medium mr-2">Ya tienes cuenta? Inicia sesion <a class="font-medium no-underline text-blue-500 cursor-pointer" asp-page="/Account/Login">aqui</a></span>
+            </div>
+            <div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Nombre"
+                           class="form-control"
+                           id="inputNombre"
+                           autocomplete="off"
+                           placeholder="Nombre Completo"
+                           aria-required="true"
+                           autofocus>
+                    <label asp-for="Input.Nombre" class="form-label">Nombre Completo</label>
+                    <span asp-validation-for="Input.Nombre" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Cedula"
+                           class="form-control"
+                           id="inputCedula"
+                           autocomplete="off"
+                           placeholder="0-0000-0000"
+                           aria-required="true">
+                    <label asp-for="Input.Cedula" class="form-label">Cedula</label>
+                    <span asp-validation-for="Input.Cedula" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Email"
+                           class="form-control"
+                           id="inputCorreo"
+                           autocomplete="off"
+                           placeholder="correo@correo.com"
+                           aria-required="true">
+                    <label asp-for="Input.Email" class="form-label">Correo Electronico</label>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Password"
+                           class="form-control"
+                           id="inputContrasena"
+                           autocomplete="off"
+                           placeholder="*********"
+                           aria-required="true">
+                    <label asp-for="Input.Password" class="form-label">Contrasena</label>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.ConfirmPassword"
+                           class="form-control"
+                           id="inputConfContrasena"
+                           autocomplete="off"
+                           placeholder="*********"
+                           aria-required="true">
+                    <label asp-for="Input.ConfirmPassword" class="form-label">Confirmar Contrasena</label>
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+                <div>
+                    <button id="register-submit" type="submit" class="w-100 btn btn-lg btn-primary">Registrarse</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

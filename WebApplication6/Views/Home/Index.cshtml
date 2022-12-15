@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using WebApplication6.Areas.Identity.Data
+
+@inject SignInManager<Usuario> SignInManager
+@inject UserManager<Usuario> UserManager
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+  @if (SignInManager.IsSignedIn(User))
+    {
+    <div class="text-center">
+        <a class="w-full md:w-3 btn btn-lg btn-primary mb-4" asp-area="" asp-controller="Articuloes" asp-action="Index">Ir a comprar</a>
+    </div>
+    }
+    else
+    {
+        <div class="text-center">
+            <h1>Inicia sesion para empezar a comprar</h1>
+        </div>
+    }

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<WebApplication6.Models.Articulo>
+
+@{
+    ViewData["Title"] = "Gracias!";
+}
+
+<div class="surface-section px-4 py-8 md:px-6 lg:px-8">
+    <span class="text-700 text-xl">Gracias!</span>
+    <div class="text-900 font-bold text-4xl my-2">Compra Realizada! 🚀</div>
+    <p class="text-700 text-xl mt-0 mb-4 p-0">Su pedido esta en camino. Sera entregado hoy. Te estaremos informando.</p>
+    <div style="height: 3px; background: linear-gradient(90deg, rgb(33, 150, 243) 0%, rgba(33, 150, 243, 0) 50%);">
+    </div>
+    <div class="border-round">
+        <ul class="list-none p-0 m-0">
+            @foreach (var item in Model)
+            {
+                <li class="p-3 border-bottom-1 surface-border flex align-items-start sm:align-items-center">
+                    <img src="@Html.DisplayFor(modelItem => item.Imagen)"
+                     class="w-3rem sm:w-8rem flex-shrink-0 mr-3 shadow-2">
+                    <div class="flex flex-column">
+                        <span class="text-900 font-medium text-xl mb-2">@Html.DisplayFor(modelItem => item.Nombre)</span><span class="text-900 font-medium">Cantidad: 1</span>
+                    </div><span class="text-900 font-medium text-lg ml-auto">CRC @Html.DisplayFor(modelItem => item.Precio)</span>
+                </li>
+            }
+        </ul>
+    </div>
+    <div class="flex flex-wrap mt-5 pb-3">
+        <div class="w-full lg:w-6 pl-3 lg:pl-0 lg:pr-3 flex align-items-end mt-5 lg:mt-0">
+            <ul class="list-none p-0 m-0 w-full">
+                <li class="mb-3"><span class="font-medium text-900">Resumen</span></li>
+                @{
+                    double sum = 0.0;
+                    @foreach (var item in Model)
+                    {
+                        sum += Convert.ToDouble(item.Precio);
+                    }
+                    <li class="flex justify-content-between border-top-1 surface-border py-3">
+                        <span class="text-900 font-medium">Total</span><span class="text-900 font-bold text-lg">CRC @sum</span>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div>
+        <a id="pagar-submit"
+           type="submit"
+           class="w-full md:w-3 btn btn-lg btn-primary mb-4"
+           asp-controller="Articuloes"
+           asp-action="SeguirComprando">Seguir Comprando</a>
+    </div>
+</div>

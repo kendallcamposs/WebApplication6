@@ -1,0 +1,50 @@
+﻿@model IEnumerable<WebApplication6.Models.Articulo>
+
+@{
+    ViewData["Title"] = "Pago";
+}
+<div class="card col-12">
+    <div class="card col-12 text-center">
+        @{
+            double sum = 0.0;
+            @foreach (var item in Model)
+            {
+                sum += Convert.ToDouble(item.Precio);
+            }
+            <span class="text-900 text-4xl mb-4 font-medium text-center">El total del carrito es: @Html.DisplayTextFor(m => sum)</span>
+            <div class="text-600 font-medium text-xl mt-0 mb-4">Envio gratis esta semana</div>
+            <input type="hidden" name="totalFactura" value="@sum" />
+            <div class="text-center">
+            <a id="pagar-submit"
+                type="submit"
+                class="w-full md:w-3 btn btn-lg btn-primary mb-4"
+                asp-controller="Articuloes"
+                asp-action="GuardarFactura">Pagar</a>
+            </div>
+        }
+    </div>
+    <div class="card col-12">
+        @foreach (var item in Model)
+        {
+            <div class="flex-column lg:flex-row flex align-items-center p-3 w-full">
+                <img src="@Html.DisplayFor(modelItem => item.Imagen)"
+                 alt="@Html.DisplayFor(modelItem => item.Imagen)"
+                 style="box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%)"
+                 class="w-9 lg:w-2 mr-5" />
+                <div style="flex: 1 1">
+                    <div class="text-2xl">
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </div>
+                    <div>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </div>
+                </div>
+                <div class="flex flex-column">
+                    <span class="text-2xl mb-1">
+                        CRC @Html.DisplayFor(modelItem => item.Precio)
+                    </span>
+                </div>
+            </div>
+        }
+    </div>
+</div>
